@@ -11,7 +11,7 @@ public class UltimaCasa extends Casa implements Serializable{
 	private String mensagem;
 
 	public UltimaCasa(Integer id, int numero, int qtd, Jogo jogo, List<Questao> questoes) {
-		super(id, numero, qtd, jogo, questoes);		
+		super(id, numero, qtd, jogo, questoes);			
 	}
 
 	public Integer getId() {
@@ -28,11 +28,6 @@ public class UltimaCasa extends Casa implements Serializable{
 
 	public void setMensagem(String mensagem) {
 		this.mensagem = mensagem;
-	}
-
-	@Override
-	public String toString() {
-		return "UltimaCasa [id=" + id + ", mensagem=" + mensagem + "]";
 	}
 
 	@Override

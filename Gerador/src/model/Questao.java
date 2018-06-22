@@ -5,7 +5,7 @@ import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
-import Enum.NivelDificuldade;
+import model.Enum.NivelDificuldade;
 
 public class Questao implements Serializable{
 
@@ -77,12 +77,6 @@ public class Questao implements Serializable{
 
 	public void setCasas(List<Casa> casas) {
 		this.casas = casas;
-	}
-
-	@Override
-	public String toString() {
-		return "Questao [id=" + id + ", enunciado=" + enunciado + ", tempo=" + tempo + ", qtd=" + qtd + ", opcResposta="
-				+ opcResposta + ", nivel=" + nivel + ", casas=" + casas + "]";
 	}
 
 	@Override

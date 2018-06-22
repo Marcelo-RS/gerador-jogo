@@ -31,11 +31,6 @@ public class CasaComDesafio extends Casa implements Serializable{
 	}
 
 	@Override
-	public String toString() {
-		return "CasaComDesafio [id=" + id + ", desafio=" + desafio + "]";
-	}
-
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = super.hashCode();

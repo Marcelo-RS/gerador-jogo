@@ -2,33 +2,46 @@ package model;
 
 import java.io.Serializable;
 
-import Enum.Nome;
+//Padão Singleton
 
 public class Jogador implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
-	private Long id;
-	private Nome nome;
+	private Integer id;
+	private String nome;
 	private Jogo jogo;
-	private Avatar avatar;
+	private Avatar avatar;	
+	private static Jogador instance;
 	
-	public Jogador(){
-	}
+	private Jogador(){
+		
+	}	
+	
+	public static Jogador getInstance(){
+		
+		if(Jogador.instance == null){
+		
+			Jogador.instance = new Jogador();
+		}
+		
+		return Jogador.instance;
+	}	
 
-	public Long getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(Long id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
+	
+	public String getNome() {
 
-	public Nome getNome() {
 		return nome;
 	}
 
-	public void setNome(Nome nome) {
+	public void setNome(String nome) {
 		this.nome = nome;
 	}
 
@@ -46,11 +59,6 @@ public class Jogador implements Serializable{
 
 	public void setJogo(Jogo jogo) {
 		this.jogo = jogo;
-	}
-
-	@Override
-	public String toString() {
-		return "Jogador [id=" + id + ", nome=" + nome + ", jogo=" + jogo + ", avatar=" + avatar + "]";
 	}
 
 	@Override

@@ -1,17 +1,43 @@
 package model;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 
-public class Avatar implements Serializable{
+//Padrão Prototype
+
+public class Avatar implements Serializable, PrototypeAvatar<Avatar> {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private Integer id;
 	private String cor;
-	
+	private Set<String> a;
 	private Jogador jogador;
 
-	public Avatar(){
+	public Avatar(String cor, Set<String> a) {
+		this.cor = cor;
+		this.a = a;
+	}
+
+	public Avatar clone() {
+
+		String cor = "Cópia da Cor: " + this.cor;
+		Set<String> a = new HashSet <String>(this.a);
+		Avatar avatar = new Avatar(cor, a);
+
+		return avatar;
+	}
+
+	public String toString() {
+
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("\n");
+		buffer.append("Cor do Avatar: ");
+		buffer.append(this.cor);
+		buffer.append("\n");
+
+		return buffer.toString();
 	}
 
 	public Integer getId() {
@@ -39,11 +65,6 @@ public class Avatar implements Serializable{
 	}
 
 	@Override
-	public String toString() {
-		return "Avatar [id=" + id + ", cor=" + cor + ", jogador=" + jogador + "]";
-	}
-
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
@@ -67,5 +88,5 @@ public class Avatar implements Serializable{
 			return false;
 		return true;
 	}
-	
+
 }

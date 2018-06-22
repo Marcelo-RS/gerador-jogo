@@ -67,12 +67,6 @@ public class Jogo implements Serializable{
 	}
 
 	@Override
-	public String toString() {
-		return "Jogo [id=" + id + ", tema=" + tema + ", nome=" + nome + ", instrucoes=" + instrucoes + ", jogador="
-				+ jogador + "]";
-	}
-
-	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
