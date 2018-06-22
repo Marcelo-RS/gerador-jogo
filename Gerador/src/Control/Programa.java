@@ -1,6 +1,11 @@
 package Control;
 
 import model.Jogador;
+import model.Enum.NivelDificuldade;
+import model.builder.GeradorDeQuestao;
+import model.builder.IQuestao;
+import model.builder.QQuestaoBuilder;
+import model.builder.QuestaoBuilder;
 import model.factoryMethod.Emissor;
 import model.factoryMethod.EmissorCreate;
 import model.factoryMethod.EmissorSMSFim;
@@ -15,17 +20,22 @@ public class Programa {
 		System.out.println(jogador.getNome());
 
 		// factory method
-
 		EmissorCreate creator = new EmissorCreate();
 
 		Emissor emissor1 = new EmissorSMSInicio();
-		emissor1.envia("\n" + "Bem vindo ao gerador de jogo! "
-				+ "\n" + "Crie seu jogo com as configurações de sua preferência!!!");
+		emissor1.envia("\n" + "Bem vindo ao gerador de jogo! " + "\n"
+				+ "Crie seu jogo com as configurações de sua preferência!!!");
 
 		Emissor emissor2 = new EmissorSMSFim();
-		emissor2.envia("\n" + "Parabéns!!!" + "\n" + "você finalizou suas configurações preferidas."
-				+ "\n" + "Que comecem os jogos..." );		
+		emissor2.envia("\n" + "Parabéns!!!" + "\n" + "você finalizou suas configurações preferidas." + "\n"
+				+ "Que comecem os jogos...");
 
+		// Builder
+		QuestaoBuilder questaoBuilder = new QQuestaoBuilder();
+		GeradorDeQuestao geradorDeQuestao = new GeradorDeQuestao(questaoBuilder);
+		IQuestao iQuestao = geradorDeQuestao.geraQuestao(NivelDificuldade.MEDIO);
+		System.out.println(iQuestao);
+		
 		/*
 		 * prototype String cor = "preto";
 		 * 
@@ -37,5 +47,6 @@ public class Programa {
 		 * 
 		 * System.out.println(clone);
 		 */
+
 	}
 }

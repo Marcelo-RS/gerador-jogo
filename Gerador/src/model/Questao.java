@@ -1,26 +1,34 @@
 package model;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 
 import model.Enum.NivelDificuldade;
+import model.builder.IQuestao;
 
-public class Questao implements Serializable{
+//Padrão Builder
+
+public class Questao implements Serializable, IQuestao{
 
 	private static final long serialVersionUID = 1L;
 	
 	private Integer id;
 	private String enunciado;
-	private Time tempo;
-	private int qtd;
+	private String tempo;
+	private int quantidade;
 	private String opcResposta;
-	private NivelDificuldade nivel;
+	private NivelDificuldade dificuldade;
 	private List<Casa> casas = new ArrayList<>();
 	
-	public Questao() {
-		super();
+	public Questao(String enunciado, String tempo, int quantidade, 
+			String opcResposta, NivelDificuldade dificuldade) {
+		
+		this.enunciado = enunciado;
+		this.tempo = tempo;
+		this.quantidade = quantidade;
+		this.opcResposta = opcResposta;
+		this.dificuldade = dificuldade;		
 	}
 
 	public Integer getId() {
@@ -39,20 +47,20 @@ public class Questao implements Serializable{
 		this.enunciado = enunciado;
 	}
 
-	public Time getTempo() {
+	public String getTempo() {
 		return tempo;
 	}
 
-	public void setTempo(Time tempo) {
+	public void setTempo(String tempo) {
 		this.tempo = tempo;
 	}
 
-	public int getQtd() {
-		return qtd;
+	public int getQuantidade() {
+		return quantidade;
 	}
 
-	public void setQtd(int qtd) {
-		this.qtd = qtd;
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
 	}
 
 	public String getOpcResposta() {
@@ -63,12 +71,12 @@ public class Questao implements Serializable{
 		this.opcResposta = opcResposta;
 	}
 
-	public NivelDificuldade getNivel() {
-		return nivel;
+	public NivelDificuldade getDificuldade() {
+		return dificuldade;
 	}
 
-	public void setNivel(NivelDificuldade nivel) {
-		this.nivel = nivel;
+	public void setNivel(NivelDificuldade dificuldade) {
+		this.dificuldade = dificuldade;
 	}
 
 	public List<Casa> getCasas() {
@@ -79,6 +87,24 @@ public class Questao implements Serializable{
 		this.casas = casas;
 	}
 
+	public String toString () {
+
+		StringBuilder stringBuilder = new StringBuilder ();
+		stringBuilder.append("\n" + "Corpo da Questão" + "\n");		
+
+		stringBuilder.append("\n" + "Enunciado: " + this.enunciado + "\n");		
+
+		stringBuilder.append ("\n" + "Nível de Dificuldade: " + this.dificuldade + "\n");		
+
+		stringBuilder.append("\n" + "Tempo na Questão: " + this.tempo + "\n");		
+
+		stringBuilder.append("\n" + "Número de Questões: " + this.quantidade + "\n");
+		
+		stringBuilder.append("\n" + "Opções de Resposta: " + this.opcResposta + "\n");		
+
+		return stringBuilder.toString();
+	}
+	
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -102,6 +128,5 @@ public class Questao implements Serializable{
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}
-	
+	}	
 }
