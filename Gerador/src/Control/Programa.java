@@ -1,6 +1,7 @@
 package Control;
 
 import model.Jogador;
+import model.Jogo;
 import model.Enum.NivelDificuldade;
 import model.builder.GeradorDeQuestao;
 import model.builder.IQuestao;
@@ -35,6 +36,17 @@ public class Programa {
 		GeradorDeQuestao geradorDeQuestao = new GeradorDeQuestao(questaoBuilder);
 		IQuestao iQuestao = geradorDeQuestao.geraQuestao(NivelDificuldade.MEDIO);
 		System.out.println(iQuestao);
+
+		// Observer
+		Jogo acao = new Jogo(2, true);
+
+		Jogador jogador1 = new Jogador(2, "Maria");		
+
+		acao.registraInteressado(jogador1);		
+
+		acao.setStatus(true);
+		System.out.println(acao + "\n" + "A tradução da palavra true para a lingua portuguesa é 'verdadeiro', significando usuário ativo");
+
 		
 		/*
 		 * prototype String cor = "preto";

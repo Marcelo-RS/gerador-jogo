@@ -1,4 +1,4 @@
-package model;
+package model.prototype;
 
 public interface PrototypeAvatar<Avatar> {
 

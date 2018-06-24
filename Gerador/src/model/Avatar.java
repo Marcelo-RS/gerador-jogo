@@ -4,6 +4,8 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import model.prototype.PrototypeAvatar;
+
 //Padrão Prototype
 
 public class Avatar implements Serializable, PrototypeAvatar<Avatar> {

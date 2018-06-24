@@ -7,8 +7,6 @@ import java.util.List;
 import model.Enum.NivelDificuldade;
 import model.builder.IQuestao;
 
-//Padrão Builder
-
 public class Questao implements Serializable, IQuestao{
 
 	private static final long serialVersionUID = 1L;

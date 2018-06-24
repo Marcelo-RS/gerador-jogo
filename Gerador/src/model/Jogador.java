@@ -2,31 +2,38 @@ package model;
 
 import java.io.Serializable;
 
-//Padão Singleton
+import model.observer.AcaoObserver;
 
-public class Jogador implements Serializable{
+//Padão Singleton e Obserber
+
+public class Jogador implements Serializable, AcaoObserver {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private Integer id;
 	private String nome;
 	private Jogo jogo;
-	private Avatar avatar;	
+	private Avatar avatar;
 	private static Jogador instance;
-	
-	private Jogador(){
+
+	public Jogador(Integer id, String nome) {
+		this.id = id;
+		this.nome = nome;
+	}
+
+	public Jogador() {
 		
-	}	
-	
-	public static Jogador getInstance(){
-		
-		if(Jogador.instance == null){
-		
+	}
+
+	public static Jogador getInstance() {
+
+		if (Jogador.instance == null) {
+
 			Jogador.instance = new Jogador();
 		}
-		
+
 		return Jogador.instance;
-	}	
+	}
 
 	public Integer getId() {
 		return id;
@@ -35,7 +42,7 @@ public class Jogador implements Serializable{
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	
+
 	public String getNome() {
 
 		return nome;
@@ -84,6 +91,13 @@ public class Jogador implements Serializable{
 		} else if (!id.equals(other.id))
 			return false;
 		return true;
-	}	
+	}
+
+	//Método do Observer
+	public void notificaAlteracao(Jogo acao) {
+		System.out.println("\n" + "Jogador(a) " + this.nome + " sendo notificado(a)");
+		System.out.println("\n" + "A ação " + acao.getId() + " teve o seu valor alterado para " + acao.getStatus());
+
+	}
 
 }

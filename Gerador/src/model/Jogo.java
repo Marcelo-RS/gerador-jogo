@@ -2,20 +2,39 @@ package model;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
-public class Jogo implements Serializable{
+import model.observer.AcaoObserver;
+
+//Padrão Observer
+
+public class Jogo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	private Integer id;
+	private boolean status = false;
 	private String tema;
 	private String nome;
 	private String instrucoes;
 	private List<Casa> casas = new ArrayList<>();
 	private Jogador jogador;
-	
-	public Jogo(){
+
+	private Set<AcaoObserver> interessados = new HashSet<AcaoObserver>();
+
+	public void registraInteressado(AcaoObserver interessado) {
+		this.interessados.add(interessado);
+	}
+
+	public void cancelaInteresse(AcaoObserver interessado) {
+		this.interessados.remove(interessado);
+	}
+
+	public Jogo(Integer id, boolean status) {
+		this.id = id;
+		this.status = status;
 	}
 
 	public Integer getId() {
@@ -24,6 +43,18 @@ public class Jogo implements Serializable{
 
 	public void setId(Integer id) {
 		this.id = id;
+	}
+
+	public boolean getStatus() {
+		return status;
+	}
+
+	public void setStatus(boolean status) {
+		this.status = status;
+		
+		for (AcaoObserver interessado : this.interessados) {
+			interessado.notificaAlteracao(this);
+		}
 	}
 
 	public String getTema() {
@@ -90,5 +121,5 @@ public class Jogo implements Serializable{
 			return false;
 		return true;
 	}
-	
+
 }
